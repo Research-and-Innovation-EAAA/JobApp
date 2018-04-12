@@ -1,0 +1,12 @@
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\bin\Debug\netcoreapp2.0\jobApp.deps.json
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\bin\Debug\netcoreapp2.0\jobApp.runtimeconfig.json
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\bin\Debug\netcoreapp2.0\jobApp.runtimeconfig.dev.json
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\bin\Debug\netcoreapp2.0\jobApp.dll
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\obj\Debug\netcoreapp2.0\jobApp.csprojResolveAssemblyReference.cache
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\obj\Debug\netcoreapp2.0\jobApp.csproj.CoreCompileInputs.cache
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\obj\Debug\netcoreapp2.0\jobApp.AssemblyInfoInputs.cache
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\obj\Debug\netcoreapp2.0\jobApp.AssemblyInfo.cs
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\bin\Debug\netcoreapp2.0\jobApp.pdb
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\obj\Debug\netcoreapp2.0\jobApp.dll
+C:\Users\xanto\OneDrive\Skrivebord\Hovedopgave forår 2018\jobApp\jobApp\obj\Debug\netcoreapp2.0\jobApp.pdb
