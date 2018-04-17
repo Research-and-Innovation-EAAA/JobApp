@@ -1,0 +1,10 @@
+C:\Users\xanto\OneDrive\Skrivebord\Entropy-dev\samples\Microsoft.AspNetCore.Mvc.TagHelpers.Localization\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.TagHelpers.Localization.deps.json
+C:\Users\xanto\OneDrive\Skrivebord\Entropy-dev\samples\Microsoft.AspNetCore.Mvc.TagHelpers.Localization\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.TagHelpers.Localization.dll
+C:\Users\xanto\OneDrive\Skrivebord\Entropy-dev\samples\Microsoft.AspNetCore.Mvc.TagHelpers.Localization\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.TagHelpers.Localization.pdb
+C:\Users\xanto\OneDrive\Skrivebord\Entropy-dev\samples\Microsoft.AspNetCore.Mvc.TagHelpers.Localization\obj\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.TagHelpers.Localization.csprojResolveAssemblyReference.cache
+C:\Users\xanto\OneDrive\Skrivebord\Entropy-dev\samples\Microsoft.AspNetCore.Mvc.TagHelpers.Localization\obj\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.TagHelpers.Localization.csproj.CoreCompileInputs.cache
+C:\Users\xanto\OneDrive\Skrivebord\Entropy-dev\samples\Microsoft.AspNetCore.Mvc.TagHelpers.Localization\obj\Debug\netstandard2.0\Internal.AspNetCore.Sdk.AssemblyInfo.cs
+C:\Users\xanto\OneDrive\Skrivebord\Entropy-dev\samples\Microsoft.AspNetCore.Mvc.TagHelpers.Localization\obj\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.TagHelpers.Localization.AssemblyInfoInputs.cache
+C:\Users\xanto\OneDrive\Skrivebord\Entropy-dev\samples\Microsoft.AspNetCore.Mvc.TagHelpers.Localization\obj\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.TagHelpers.Localization.AssemblyInfo.cs
+C:\Users\xanto\OneDrive\Skrivebord\Entropy-dev\samples\Microsoft.AspNetCore.Mvc.TagHelpers.Localization\obj\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.TagHelpers.Localization.dll
+C:\Users\xanto\OneDrive\Skrivebord\Entropy-dev\samples\Microsoft.AspNetCore.Mvc.TagHelpers.Localization\obj\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.TagHelpers.Localization.pdb
