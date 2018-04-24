@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Extensions.Localization
-@model IEnumerable<Region>
+@*@model IEnumerable<Region>*@
+@model Annonce
 @inject IStringLocalizer<resources> SharedLocalizer
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
@@ -8,10 +9,11 @@
     ViewData["Title"] = "Index";
 }
 
-@foreach (var m in Model)
+@*@foreach (var m in Model)
 {
     <li>@m.Name</li>
-}
+}*@
+<br />
 Dansk Navn: @SharedLocalizer["Frit"]
 <br />
 Cookie: @HttpContextAccessor.HttpContext.Request.Cookies[".AspNetCore.Culture"]

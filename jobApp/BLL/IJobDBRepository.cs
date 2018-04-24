@@ -11,5 +11,6 @@ namespace JobApp.BLL
     {
         IEnumerable<Region> AllRegions();
         IEnumerable<Kompetence> KompetenceByAnnonceID(long id);
+        Annonce getAnnonce(uint id);
     }
 }

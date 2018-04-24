@@ -8,6 +8,7 @@ using jobApp.Models;
 using JobApp.BLL;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace jobApp.Controllers
 {
@@ -20,10 +21,21 @@ namespace jobApp.Controllers
         }
         public IActionResult Index()
         {
+
+            var an = db.getAnnonce(1);
+            //StringBuilder StringPlus = new StringBuilder();
+            //for (int i = 0; i < an.Body.Length; i++)
+            //{
+            //    StringPlus.Append(an.Body[i].ToString());
+            //}
+            string theMessage2 = Encoding.Default.GetString(an.Body);
+
+
+            //var StringPlus = Encoding.Unicode.GetString(an.Body, 0, an.Body.Length);
             var reg = db.AllRegions();
             var all = db.KompetenceByAnnonceID(6);
 
-            return View(reg);
+            return View(theMessage2);
             //return View();
         }
 

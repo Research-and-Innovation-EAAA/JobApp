@@ -21,6 +21,12 @@ namespace JobApp.DAL
         {
             return _dbContext.Region.ToList();
         }
+
+        public Annonce getAnnonce(uint id)
+        {
+            return _dbContext.Annonce.Find(id);
+        }
+
         public IEnumerable<Kompetence> KompetenceByAnnonceID(long id)
         {
             IEnumerable<Kompetence> AKList = _dbContext.AnnonceKompetence.Where(x => x.AnnonceId == id).Select(z => z.Komptence);
