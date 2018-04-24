@@ -1,4 +1,5 @@
 ﻿using jobApp.Models;
+using jobApp.Models.DBModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

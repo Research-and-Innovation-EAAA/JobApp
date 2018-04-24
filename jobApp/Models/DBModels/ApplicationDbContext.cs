@@ -1,34 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using jobApp.Models;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace jobApp.Data
+namespace jobApp.Models.DBModels
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public partial class ApplicationDbContext : DbContext
     {
         public virtual DbSet<Annonce> Annonce { get; set; }
         public virtual DbSet<AnnonceKompetence> AnnonceKompetence { get; set; }
+        public virtual DbSet<Efmigrationshistory> Efmigrationshistory { get; set; }
         public virtual DbSet<Kompetence> Kompetence { get; set; }
         public virtual DbSet<KompetenceKategorisering> KompetenceKategorisering { get; set; }
-        public virtual DbSet<KompetenceProfile> KompetenceProfile { get; set; }
+        public virtual DbSet<Kompetenceprofile> Kompetenceprofile { get; set; }
         public virtual DbSet<Region> Region { get; set; }
-        public virtual DbSet<RegionProfile> RegionProfile { get; set; }
+        public virtual DbSet<Regionprofile> Regionprofile { get; set; }
+        public virtual DbSet<SkillsDaFixed> SkillsDaFixed { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+
             : base(options)
+
         {
+
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseMySql("Server=localhost;Database=jobdbtest;User ID='root';Password='6bc45b81';");
+//            }
+//        }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
             modelBuilder.Entity<Annonce>(entity =>
             {
                 entity.ToTable("annonce");
@@ -40,15 +45,11 @@ namespace jobApp.Data
 
                 entity.Property(e => e.Body)
                     .HasColumnName("body")
-                    .HasColumnType("blob");
+                    .HasColumnType("mediumblob");
 
-                entity.Property(e => e.CreationDate)
-                    .HasColumnName("creationDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ExpiringDate)
-                    .HasColumnName("expiringDate")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.Checksum)
+                    .HasColumnName("checksum")
+                    .HasColumnType("text");
 
                 entity.Property(e => e.RegionId).HasColumnName("region_id");
 
@@ -59,6 +60,10 @@ namespace jobApp.Data
                 entity.Property(e => e.Title)
                     .HasColumnName("title")
                     .HasMaxLength(255);
+
+                entity.Property(e => e.Url)
+                    .HasColumnName("url")
+                    .HasColumnType("text");
 
                 entity.HasOne(d => d.Region)
                     .WithMany(p => p.Annonce)
@@ -93,14 +98,37 @@ namespace jobApp.Data
                     .HasConstraintName("kompetence_id");
             });
 
+           
+
+           
+            
+
+            
+           
+
+            
+
+            modelBuilder.Entity<Efmigrationshistory>(entity =>
+            {
+                entity.HasKey(e => e.MigrationId);
+
+                entity.ToTable("__efmigrationshistory");
+
+                entity.Property(e => e.MigrationId).HasMaxLength(95);
+
+                entity.Property(e => e.ProductVersion)
+                    .IsRequired()
+                    .HasMaxLength(32);
+            });
+
             modelBuilder.Entity<Kompetence>(entity =>
             {
                 entity.ToTable("kompetence");
 
                 entity.Property(e => e.Id).HasColumnName("_id");
 
-                entity.Property(e => e.Category)
-                    .HasColumnName("category")
+                entity.Property(e => e.AltLabels)
+                    .HasColumnName("altLabels")
                     .HasMaxLength(255);
 
                 entity.Property(e => e.ConceptUri)
@@ -111,8 +139,16 @@ namespace jobApp.Data
                     .HasColumnName("description")
                     .HasColumnType("blob");
 
+                entity.Property(e => e.Kompetencecol)
+                    .HasColumnName("kompetencecol")
+                    .HasMaxLength(45);
+
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.PrefferredLabel)
+                    .HasColumnName("prefferredLabel")
                     .HasMaxLength(255);
             });
 
@@ -143,71 +179,101 @@ namespace jobApp.Data
                     .HasConstraintName("fk_Kompetence_has_Kompetence_Kompetence1");
             });
 
-            modelBuilder.Entity<KompetenceProfile>(entity =>
+            modelBuilder.Entity<Kompetenceprofile>(entity =>
             {
-                entity.ToTable("kompetence_profile");
+                entity.ToTable("kompetenceprofile");
 
                 entity.HasIndex(e => e.KompetenceprofileId)
-                    .HasName("kompetence_id_idx");
+                    .HasName("IX_KompetenceProfile_KompetenceprofileId");
 
-                entity.HasIndex(e => e.kompetenceApplicationUserId)
-                    .HasName("kompetenceApplicationUserId_idx");
+                entity.HasIndex(e => e.ProfilekompetenceId)
+                    .HasName("IX_KompetenceProfile_ProfilekompetenceId");
 
-                entity.Property(e => e.Id).HasColumnName("_id");
+                entity.Property(e => e.KompetenceApplicationUserId).HasColumnName("kompetenceApplicationUserId");
 
-                entity.Property(e => e.KompetenceprofileId).HasColumnName("kompetenceprofile_id");
-
-                entity.Property(e => e.kompetenceApplicationUserId).HasColumnName("kompetenceApplicationUserId");
-
-                entity.HasOne(d => d.Kompetenceprofile)
-                    .WithMany(p => p.KompetenceProfile)
+                entity.HasOne(d => d.KompetenceprofileNavigation)
+                    .WithMany(p => p.Kompetenceprofile)
                     .HasForeignKey(d => d.KompetenceprofileId)
-                    .HasConstraintName("kompetenceProfile_id");
+                    .HasConstraintName("FK_KompetenceProfile_kompetence_KompetenceprofileId");
 
                 entity.HasOne(d => d.Profilekompetence)
                     .WithMany(p => p.KompetenceProfile)
-                    .HasForeignKey(d => d.kompetenceApplicationUserId)
-                    .HasConstraintName("kompetenceApplicationUserId");
+                    .HasForeignKey(d => d.ProfilekompetenceId)
+                    .HasConstraintName("FK_KompetenceProfile_AspNetUsers_ProfilekompetenceId");
             });
-
-
 
             modelBuilder.Entity<Region>(entity =>
             {
                 entity.ToTable("region");
 
+                entity.HasIndex(e => e.Name)
+                    .HasName("name_UNIQUE")
+                    .IsUnique();
+
                 entity.Property(e => e.RegionId).HasColumnName("region_id");
 
                 entity.Property(e => e.Name)
+                    .IsRequired()
                     .HasColumnName("name")
                     .HasMaxLength(255);
             });
 
-            modelBuilder.Entity<RegionProfile>(entity =>
+            modelBuilder.Entity<Regionprofile>(entity =>
             {
-                entity.ToTable("region_profile");
+                entity.ToTable("regionprofile");
 
-                entity.HasIndex(e => e.regionApplicationUserId)
-                    .HasName("regionApplicationUserId_idx");
+                entity.HasIndex(e => e.ProfileId)
+                    .HasName("IX_RegionProfile_ProfileId");
 
-                entity.HasIndex(e => e.RegionProfileId)
-                    .HasName("region_id_idx");
+                entity.HasIndex(e => e.RegionProfileNavigationRegionId)
+                    .HasName("IX_RegionProfile_RegionProfileNavigationRegionId");
 
-                entity.Property(e => e.Id).HasColumnName("_id");
-
-                entity.Property(e => e.regionApplicationUserId).HasColumnName("regionApplicationUserId");
-
-                entity.Property(e => e.RegionProfileId).HasColumnName("regionProfile_id");
+                entity.Property(e => e.RegionApplicationUserId).HasColumnName("regionApplicationUserId");
 
                 entity.HasOne(d => d.Profile)
                     .WithMany(p => p.RegionProfile)
-                    .HasForeignKey(d => d.regionApplicationUserId)
-                    .HasConstraintName("regionApplicationUserId");
+                    .HasForeignKey(d => d.ProfileId)
+                    .HasConstraintName("FK_RegionProfile_AspNetUsers_ProfileId");
 
-                entity.HasOne(d => d.RegionProfileNavigation)
-                    .WithMany(p => p.RegionProfile)
-                    .HasForeignKey(d => d.RegionProfileId)
-                    .HasConstraintName("regionProfile_id");
+                entity.HasOne(d => d.RegionProfileNavigationRegion)
+                    .WithMany(p => p.Regionprofile)
+                    .HasForeignKey(d => d.RegionProfileNavigationRegionId)
+                    .HasConstraintName("FK_RegionProfile_region_RegionProfileNavigationRegionId");
+            });
+
+            modelBuilder.Entity<SkillsDaFixed>(entity =>
+            {
+                entity.ToTable("skills_da_fixed");
+
+                entity.Property(e => e.Id).HasColumnName("_id");
+
+                entity.Property(e => e.AltLabels)
+                    .HasColumnName("altLabels")
+                    .HasColumnType("text");
+
+                entity.Property(e => e.ConceptType)
+                    .HasColumnName("conceptType")
+                    .HasColumnType("text");
+
+                entity.Property(e => e.ConceptUri)
+                    .HasColumnName("conceptUri")
+                    .HasColumnType("text");
+
+                entity.Property(e => e.Description)
+                    .HasColumnName("description")
+                    .HasColumnType("text");
+
+                entity.Property(e => e.PreferredLabel)
+                    .HasColumnName("preferredLabel")
+                    .HasColumnType("text");
+
+                entity.Property(e => e.ReuseLevel)
+                    .HasColumnName("reuseLevel")
+                    .HasColumnType("text");
+
+                entity.Property(e => e.SkillType)
+                    .HasColumnName("skillType")
+                    .HasColumnType("text");
             });
         }
     }

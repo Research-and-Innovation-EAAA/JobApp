@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace jobApp.Models
+namespace jobApp.Models.DBModels
 {
     public partial class Annonce
     {
@@ -11,12 +11,12 @@ namespace jobApp.Models
         }
 
         public uint Id { get; set; }
-        public string Title { get; set; }
         public byte[] Body { get; set; }
-        public DateTime? TimeStamp { get; set; }
-        public DateTime? ExpiringDate { get; set; }
-        public DateTime? CreationDate { get; set; }
         public uint? RegionId { get; set; }
+        public DateTime? TimeStamp { get; set; }
+        public string Title { get; set; }
+        public string Checksum { get; set; }
+        public string Url { get; set; }
 
         public Region Region { get; set; }
         public ICollection<AnnonceKompetence> AnnonceKompetence { get; set; }

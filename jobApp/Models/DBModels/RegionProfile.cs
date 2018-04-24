@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace jobApp.Models
+namespace jobApp.Models.DBModels
 {
-    public partial class RegionProfile
+    public partial class Regionprofile
     {
-        public uint? RegionProfileId { get; set; }
-        public string regionApplicationUserId { get; set; }
         public uint Id { get; set; }
+        public string ProfileId { get; set; }
+        public uint? RegionProfileId { get; set; }
+        public uint? RegionProfileNavigationRegionId { get; set; }
+        public string RegionApplicationUserId { get; set; }
 
         public ApplicationUser Profile { get; set; }
-        public Region RegionProfileNavigation { get; set; }
+        public Region RegionProfileNavigationRegion { get; set; }
     }
 }

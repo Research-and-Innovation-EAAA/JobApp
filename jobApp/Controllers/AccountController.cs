@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using jobApp.Models;
 using jobApp.Models.AccountViewModels;
 using jobApp.Services;
+using jobApp.Models.DBModels;
 
 namespace jobApp.Controllers
 {

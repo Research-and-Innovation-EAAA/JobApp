@@ -20,9 +20,10 @@ namespace jobApp.Controllers
         }
         public IActionResult Index()
         {
-            var all = db.KompetenceByAnnonceID(1);
+            var reg = db.AllRegions();
+            var all = db.KompetenceByAnnonceID(6);
 
-            return View(all);
+            return View(reg);
             //return View();
         }
 
